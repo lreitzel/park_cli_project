@@ -1,3 +1,5 @@
+require 'dotenv'
+Dotenv.load
 require 'bundler/setup'
 Bundler.require
 require 'open-uri'
