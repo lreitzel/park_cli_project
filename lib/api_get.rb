@@ -15,8 +15,10 @@ class APIGet
         info = JSON.parse(api_data)
         binding.pry
         info["data"].each do |hash|
-            hash["fullname"]
-            hash[description]
+            hash["fullName"]
+            hash["description"]
+            hash["addresses"]
+            hash["activities"]
         end
 
     end
