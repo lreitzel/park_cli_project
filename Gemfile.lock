@@ -8,6 +8,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     rake (13.0.3)
+    require_all (3.0.0)
 
 PLATFORMS
   x86_64-linux
@@ -16,6 +17,7 @@ DEPENDENCIES
   dotenv
   pry
   rake
+  require_all
 
 BUNDLED WITH
    2.2.11

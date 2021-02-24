@@ -1,4 +1,4 @@
-class CLI
+class ParkDiscovery::CLI
 
     def initialize
         APIGet.new("https://developer.nps.gov/api/v1/parks?&api_key=#{ENV["NPS_API_KEY"]}").get_response_body
@@ -33,6 +33,10 @@ class CLI
 
     def goodbye
        puts "Thank you for using Park Discovery! Goodbye!"
+    end
+
+    def list_parks
+        Park.all
     end
 
 

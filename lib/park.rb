@@ -1,4 +1,4 @@
-class Park
+class ParkDiscovery::Park
     attr_accessor :name, :description, :location, :activity
 
     @@all = []
@@ -13,5 +13,7 @@ class Park
     def self.all
         @@all 
     end
+
+    
 
 end

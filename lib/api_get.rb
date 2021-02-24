@@ -1,4 +1,4 @@
-class APIGet
+class ParkDiscovery::APIGet
     attr_accessor :url
 
     def initialize(url)

@@ -1,4 +1,4 @@
-class Activity
+class ParkDiscovery::Activity
     attr_accessor :name
 
     @@all =[]
