@@ -2,4 +2,4 @@
 
 require_relative '../config/environment'
 
-ParkDiscovery::CLI.new.begin
+CLI.new.begin

@@ -1,4 +1,5 @@
-class ParkDiscovery::APIGet
+# module ParkDiscovery
+class APIGet
     attr_accessor :url
 
     def initialize(url)
@@ -7,20 +8,29 @@ class ParkDiscovery::APIGet
 
     def get_response_body
         uri = URI.parse(@url)
-        response = NET::HTTP.get_response(uri)
+        response = Net::HTTP.get_response(uri)
         parse_json(response.body)
     end
 
-    def parse_json(api_data)
-        info = JSON.parse(api_data)
-        binding.pry
+    def parse_json(body)
+        info = JSON.parse(body)
+        # binding.pry
         info["data"].each do |hash|
-            hash["fullName"]
-            hash["description"]
-            hash["addresses"]
-            hash["activities"]
+            new_park = Park.new
+             new_park.name = hash["fullName"]
+             new_park.description = hash["description"]
+             new_park.activity = hash["activities"].collect {|h| h["name"]}
+            state_str = hash["addresses"].collect {|h| h["stateCode"]}[0]
+                found_state = State.all.find {|obj| obj.name == state_str}
+                if found_state
+                    new_state = found_state
+                else
+                    new_state = State.new(state_str)
+                end
+            new_state.add_park(new_park)
         end
 
     end
 
 end
+# end

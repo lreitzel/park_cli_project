@@ -1,4 +1,5 @@
-class ParkDiscovery::Activity
+# module ParkDiscovery
+class Activity
     attr_accessor :name
 
     @@all =[]
@@ -13,3 +14,4 @@ class ParkDiscovery::Activity
     end
     
 end
+# end
