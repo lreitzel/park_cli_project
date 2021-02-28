@@ -24,4 +24,8 @@ class State
         @parks << park unless @parks.include?(park)
     end
 
+    def self.find_state_by_name(name)
+        @@all.find {|state| state.name == name}
+    end
+
 end
