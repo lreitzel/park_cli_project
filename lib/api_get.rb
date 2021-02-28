@@ -21,6 +21,8 @@ class APIGet
             new_park.description = hash["description"]
             new_park.activity = hash["activities"].collect {|h| h["name"]}
             new_park.state = hash["addresses"].collect {|h| h["stateCode"]}[0]
+            new_activity = Activity.new
+            new_activity.name = hash["activities"].collect {|h| h["name"]}
             # state_str = hash["addresses"].collect {|h| h["stateCode"]}[0] 
             #     found_state = State.all.find {|obj| obj.name == state_str}
             #     if found_state

@@ -46,9 +46,14 @@ class Park
         @@all.find {|park| park.name == name}
     end
 
-    # def self.find_by_activity(activity)
-    #     @@all.find {|park| park.activity == activity}
-    # end
+    def self.find_by_activity(activity)
+        @@all.select do |park|
+            if park.activity.include?(activity)
+                park.name
+            end
+        end
+            
+    end
 
     def self.find_by_state(state)
         @@all.find {|park| park.state(name) == state(name)}

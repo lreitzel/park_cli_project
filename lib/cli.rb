@@ -32,7 +32,14 @@ class CLI
             main_menu_prompt
 
         when 2
-            list_activities
+            activity_input = list_activities
+            chosen_activity = Park.find_by_activity(activity_input).each.with_index(1) do |park, i|
+                puts "#{i}. #{park.name}" 
+            end
+            puts "Press any key to return to main menu"
+            input = gets.strip
+            main_menu_prompt
+
         when 3
             goodbye
             exit
@@ -66,73 +73,17 @@ class CLI
         end
     end
 
-    # def state_prompt
-    #     @states = state_menu
-    #     prompt.select("State Options", @states)
-    # end
+    def list_activities
+        activities = Activity.all
+        park_activities = activities.collect do |activity|
+            activity.name
+        end
 
-    # def regions_prompt
-        
-    #     prompt.select("Region Options") do |menu|
-    #         menu.choice "Alaska", 1
-    #         menu.choice "Intermountain", 2
-    #         menu.choice "Midwest", 3
-    #         menu.choice "National Capital", 4
-    #         menu.choice "Northeast", 5
-    #         menu.choice "Southeast", 6
-    #         menu.choice "Pacific West", 7
-    #         menu.choice "Exit Park Discovery", 8
-    #     end
-    # end
-
-    # def list_parks_by_state
-    #     input = gets.strip
-
-    #     if state = State.find_state_by_name(input)
-    #         state.parks.sort {|a, b| a.name <=> b.name}.each.with_index(1) do |park, i|
-    #             puts "#{i}. #{park.name}"
-    #         end
-    #     end
-    # end
-
-    # def state_menu
-    #     puts "Please select the state in which you would like to explore:"
-    
-    #     State.all.sort {|a, b| a.name <=> b.name}.collect {|state| state.name}
-    #         #puts "#{i}. #{state.name}"
-    #     #end
-    #     #need to figure out how to get this method to list names, not objects.
-    # end
-
-
-    # def main_menu
-    #     # puts "1. List all parks" #shows all parks, with a limit of 50
-    #     # puts "2. List all activities" #then can select a specific park
-    #     # puts "3. List all locations" #regions, then states, then parks in those states
-    #     menu
-    # end
-
-    # def menu
-    #     input = nil
-    #     while input != "exit"
-    #         input = gets.strip.to_i
-
-    #         case input
-    #         when 1
-    #             list_parks #change to parks_menu method and create method that will show new list of parks 
-    #             #and allow user to choose from that selection to get details.(park.name, park.location, park.activity)
-    #         when 2
-    #             list_activities #change to activities_menu method that will allow user to select an activity 
-    #             #and see a list of parks that correspond to that activity.(list_parks_by_activity)
-    #         when 3
-    #             state_menu #change to states_menu that will allow people to see a list of states and then
-    #             #select a state to see the list of parks.(list_parks_by_state)
-    #         else
-    #             puts "Please make a different selection, that option is invalid."
-    #         end
-    #     end
-
-    # end
+        prompt.select("Please select from these activities:", park_activities.uniq, cycle: true) do |menu|
+            menu.choice "Return to main menu"
+            menu.choice "Exit"
+        end
+    end
 
     def goodbye
        puts "Thank you for using Park Discovery! Goodbye!"
