@@ -8,12 +8,12 @@ class CLI
     end
 
     def begin
-        puts "Hello! Welcome to  NC Park Discovery!"
-        # sleep(2)
-        puts "This program allows you to search through North Carolina's National Parks to find the ideal park or national monument for you!"
-        # sleep(5)
-        puts "Select exit if you are done with NC Park Discovery."
-        # sleep(3)
+        puts "Hello! Welcome to NC Park Discovery!".blue
+        sleep(2)
+        puts "This program allows you to search through North Carolina's National Parks to find the ideal park or national monument for you!".blue
+        sleep(5)
+        puts "Select exit when you are done using NC Park Discovery. Enjoy!".blue
+        sleep(3)
         main_menu_prompt
     end
 
@@ -22,21 +22,33 @@ class CLI
         when 1 
             park_input = list_parks
             chosen_park = Park.find_by_name(park_input)
-            puts "Name: #{chosen_park.name}" #create method using chosen_park as argument with better formatting
-            puts "Description: #{chosen_park.description}"
-            puts "Available Activities: #{chosen_park.activity}"
-            puts "Link for more information: #{chosen_park.url}"
-            puts "Make another selection or choose Exit:"
+            sleep(2)
+            puts "Name:".cyan
+            puts "#{chosen_park.name}"
+            sleep(2)
+            puts "Description:".cyan
+            puts "#{chosen_park.description}"
+            sleep(2)
+            puts "Available Activities:".cyan
+            puts "#{chosen_park.activity.join(", ")}"
+            sleep(2)
+            puts "Link for more information:".cyan
+            puts "#{chosen_park.url}"
+            sleep(2)
+            puts "Make another selection or choose Exit:".light_magenta
+            sleep(3)
             main_input = main_menu_prompt
 
         when 2
             activity_input = list_activities
             chosen_activity = Activity.find_by_name(activity_input)
-            # list_parks_by_activity(activity_input)
-            #connects the activity to the parks that the activity belongs to
+            sleep(1)
+            puts "Make another selection or choose Exit:".light_magenta
+            sleep(1)
+            main_input = main_menu_prompt
         when 3
             goodbye
-            # sleep(3)
+            sleep(3)
             exit
         end
         
@@ -63,10 +75,7 @@ class CLI
             park.name
         end
         
-        prompt.select("Please select from these parks:", park_names.uniq) do |menu|
-            menu.choice "Return to main menu"
-            menu.choice "Exit"
-        end
+        prompt.select("Please select from these parks:", park_names.uniq)
     end
 
     def list_activities
@@ -75,29 +84,26 @@ class CLI
             activity.name
         end
 
-        prompt.select("Please select from these activities:", park_activities.uniq) do |menu|
-            menu.choice "Return to main menu"
-            menu.choice "Exit"
-        end
+        prompt.select("These are some of the activities available in NC National Parks:", park_activities.uniq)
     end
 
-    def list_parks_by_activity(activity)
+    # def list_parks_by_activity(activity)
        
-        parks_with_activity = Park.find_by_activity(activity)
-            # if parks_with_activity.include?(activity_input) do |park|
-            #     park.name
-            # end
+    #     parks_with_activity = Park.find_by_activity(activity)
+    #         # if parks_with_activity.include?(activity_input) do |park|
+    #         #     park.name
+    #         # end
 
 
-        prompt.select("Now you can select from any of these parks to get more details:", parks_with_activity.uniq) do |menu|
-            menu.choice "Return to main menu"
-            menu.choice "Exit"
-        end
+    #     prompt.select("Now you can select from any of these parks to get more details:", parks_with_activity.uniq) do |menu|
+    #         menu.choice "Return to main menu"
+    #         menu.choice "Exit"
+    #     end
 
-    end
+    # end
 
     def goodbye
-       puts "Thank you for using Park Discovery! Goodbye!"
+       puts "Thank you for using Park Discovery! Goodbye!".light_magenta
     end
 
 end
