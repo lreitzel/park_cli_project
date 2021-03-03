@@ -1,3 +1,4 @@
+#this entire class is probably irrelevant
 class State
     attr_accessor :name
     attr_reader :parks

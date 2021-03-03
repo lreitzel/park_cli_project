@@ -12,14 +12,12 @@ class CLI
         # sleep(2)
         puts "This program allows you to search through North Carolina's National Parks to find the ideal park or national monument for you!"
         # sleep(5)
-        # puts "Please select the state you want to explore in:"
-        # sleep(2)
         puts "Select exit if you are done with NC Park Discovery."
         # sleep(3)
-        # regions_prompt
-        # input = ""
-        main_input = main_menu_prompt
+        main_menu_prompt
+    end
 
+    def case_block(main_input)
         case main_input
         when 1 
             park_input = list_parks
@@ -27,24 +25,19 @@ class CLI
             puts "Name: #{chosen_park.name}" #create method using chosen_park as argument with better formatting
             puts "Description: #{chosen_park.description}"
             puts "Available Activities: #{chosen_park.activity}"
-            puts "Press any key to return to main menu"
-            input = gets.strip
-            main_menu_prompt
+            puts "Link for more information: #{chosen_park.url}"
+            puts "Make another selection or choose Exit:"
+            main_input = main_menu_prompt
 
         when 2
             activity_input = list_activities
-            chosen_activity = Park.find_by_activity(activity_input).each.with_index(1) do |park, i|
-                puts "#{i}. #{park.name}" 
-            end
-            puts "Press any key to return to main menu"
-            input = gets.strip
-            main_menu_prompt
-
+            chosen_activity = Activity.find_by_name(activity_input)
+            # list_parks_by_activity(activity_input)
+            #connects the activity to the parks that the activity belongs to
         when 3
             goodbye
+            # sleep(3)
             exit
-        else
-            "Sorry, that is not a valid option, please select from the list"
         end
         
     end
@@ -54,12 +47,15 @@ class CLI
     end
 
     def main_menu_prompt
-        prompt.select("Search by Park or by Activity", cycle: true) do |menu|
+        
+        input = prompt.select("Search by Park or by Activity", cycle: true) do |menu|
             menu.choice "List all parks", 1
-            menu.choice "List all activities and then select a park", 2
+            menu.choice "List all activities", 2
             menu.choice "Exit", 3
         end
+        case_block(input)
     end
+
 
     def list_parks
         parks = Park.all
@@ -67,7 +63,7 @@ class CLI
             park.name
         end
         
-        prompt.select("Please select from these parks:", park_names.uniq, cycle: true) do |menu|
+        prompt.select("Please select from these parks:", park_names.uniq) do |menu|
             menu.choice "Return to main menu"
             menu.choice "Exit"
         end
@@ -79,10 +75,25 @@ class CLI
             activity.name
         end
 
-        prompt.select("Please select from these activities:", park_activities.uniq, cycle: true) do |menu|
+        prompt.select("Please select from these activities:", park_activities.uniq) do |menu|
             menu.choice "Return to main menu"
             menu.choice "Exit"
         end
+    end
+
+    def list_parks_by_activity(activity)
+       
+        parks_with_activity = Park.find_by_activity(activity)
+            # if parks_with_activity.include?(activity_input) do |park|
+            #     park.name
+            # end
+
+
+        prompt.select("Now you can select from any of these parks to get more details:", parks_with_activity.uniq) do |menu|
+            menu.choice "Return to main menu"
+            menu.choice "Exit"
+        end
+
     end
 
     def goodbye
