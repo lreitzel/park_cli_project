@@ -3,8 +3,6 @@ class CLI
 
     def initialize
         APIGet.new("https://developer.nps.gov/api/v1/parks?stateCode=NC&api_key=#{ENV["NPS_API_KEY"]}").get_response_body
-        # APIGet.new("https://developer.nps.gov/api/v1/parks?&api_key=#{ENV["NPS_API_KEY"]}").get_response_body
-        # binding.pry
     end
 
     def begin
@@ -41,7 +39,8 @@ class CLI
 
         when 2
             activity_input = list_activities
-            chosen_activity = Activity.find_by_name(activity_input)
+            chosen_activity_park = Park.find_by_activity(activity_input)
+            puts "#{chosen_activity_park.name}".cyan
             sleep(1)
             puts "Make another selection or choose Exit:".light_magenta
             sleep(1)
@@ -86,21 +85,6 @@ class CLI
 
         prompt.select("These are some of the activities available in NC National Parks:", park_activities.uniq)
     end
-
-    # def list_parks_by_activity(activity)
-       
-    #     parks_with_activity = Park.find_by_activity(activity)
-    #         # if parks_with_activity.include?(activity_input) do |park|
-    #         #     park.name
-    #         # end
-
-
-    #     prompt.select("Now you can select from any of these parks to get more details:", parks_with_activity.uniq) do |menu|
-    #         menu.choice "Return to main menu"
-    #         menu.choice "Exit"
-    #     end
-
-    # end
 
     def goodbye
        puts "Thank you for using Park Discovery! Goodbye!".light_magenta
