@@ -87,7 +87,8 @@ class CLI
     end
 
     def goodbye
-       puts "Thank you for using Park Discovery! Goodbye!".light_magenta
+        clear
+        puts "Thank you for using Park Discovery! Goodbye!".light_magenta
     end
 
 end
