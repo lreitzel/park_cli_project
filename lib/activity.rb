@@ -12,9 +12,9 @@ class Activity
         @@all
     end
 
-    def self.find_by_name(name)
-        @@all.find {|activity| activity.name == name}
-    end
+    # def self.find_by_name(name)
+    #     @@all.find {|activity| activity.name == name}
+    # end
     
 end
 # end
