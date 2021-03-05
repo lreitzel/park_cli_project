@@ -16,7 +16,7 @@ class Park
     end
 
     def self.find_by_activity(activity)
-        @@all.sample do |park|
+        @@all.find do |park|
             if park.activity.include?(activity)
                 park.name
             end
