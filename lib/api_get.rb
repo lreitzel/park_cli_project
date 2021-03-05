@@ -1,4 +1,3 @@
-# module ParkDiscovery
 class APIGet
     attr_accessor :url
 
@@ -31,4 +30,3 @@ class APIGet
     end
 
 end
-# end

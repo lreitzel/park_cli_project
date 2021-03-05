@@ -1,4 +1,3 @@
-# module ParkDiscovery
 class CLI
 
     def initialize
@@ -6,11 +5,11 @@ class CLI
     end
 
     def begin
-        puts "Hello! Welcome to NC Park Discovery!".blue
+        puts "Hello! Welcome to NC Park Discovery!".green
         sleep(2)
-        puts "This program allows you to search through North Carolina's National Parks to find the ideal park or national monument for you!".blue
+        puts "This program allows you to search through North Carolina's National Parks to find the ideal park or national monument for you!".green
         sleep(5)
-        puts "Select exit when you are done using NC Park Discovery. Enjoy!".blue
+        puts "Select exit when you are done using NC Park Discovery. Enjoy!".green
         sleep(3)
         main_menu_prompt
     end
@@ -91,4 +90,3 @@ class CLI
     end
 
 end
-# end

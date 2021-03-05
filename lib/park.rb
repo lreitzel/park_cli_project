@@ -1,4 +1,3 @@
-# module ParkDiscovery
 class Park
     attr_accessor :name, :description, :activity, :url
 
@@ -30,4 +29,3 @@ class Park
     end
 
 end
-# end

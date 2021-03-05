@@ -1,4 +1,3 @@
-# module ParkDiscovery
 class Activity
     attr_accessor :name
 
@@ -11,10 +10,5 @@ class Activity
     def self.all
         @@all
     end
-
-    # def self.find_by_name(name)
-    #     @@all.find {|activity| activity.name == name}
-    # end
     
 end
-# end

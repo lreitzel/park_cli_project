@@ -9,6 +9,3 @@ require 'json'
 require 'tty-prompt'
 
 require_all 'lib'
-
-# module ParkDiscovery
-# end
