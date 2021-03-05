@@ -32,7 +32,7 @@ class CLI
             puts "Link for more information:".cyan
             puts "#{chosen_park.url}"
             sleep(2)
-            puts "Make another selection or choose Exit:".light_magenta
+            puts "Make another selection or choose Exit:".green
             sleep(3)
             main_input = main_menu_prompt
 
@@ -41,10 +41,11 @@ class CLI
             chosen_activity_park = Park.find_by_activity(activity_input)
             puts "#{chosen_activity_park.name}".cyan
             sleep(1)
-            puts "Make another selection or choose Exit:".light_magenta
+            puts "Make another selection or choose Exit:".green
             sleep(1)
             main_input = main_menu_prompt
         when 3
+            system("clear")
             goodbye
             sleep(3)
             exit
@@ -82,7 +83,7 @@ class CLI
             activity.name
         end
 
-        prompt.select("These are some of the activities available in NC National Parks:", park_activities.uniq)
+        prompt.select("Select an activity and you will be shown one park with this activity:", park_activities.uniq)
     end
 
     def goodbye
