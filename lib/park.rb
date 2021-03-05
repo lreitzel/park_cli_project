@@ -3,10 +3,6 @@ class Park
 
     @@all = []
 
-    def initialize
-        save
-    end
-
     def self.all
         @@all 
     end

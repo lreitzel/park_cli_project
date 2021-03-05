@@ -74,7 +74,7 @@ class CLI
             park.name
         end
         
-        prompt.select("Please select from these parks:", park_names.uniq)
+        prompt.select("Please select from these parks:", park_names)
     end
 
     def list_activities
