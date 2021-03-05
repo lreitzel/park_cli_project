@@ -24,8 +24,6 @@ class Park
             if park.activity.include?(activity)
                 park.name
             end
-        end
-            
+        end    
     end
-
 end

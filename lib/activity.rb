@@ -10,5 +10,4 @@ class Activity
     def self.all
         @@all
     end
-    
 end

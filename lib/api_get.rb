@@ -19,14 +19,10 @@ class APIGet
             new_park.name = hash["fullName"]
             new_park.description = hash["description"]
             new_park.activity = hash["activities"].collect {|h| h["name"]}
-            # new_park.state = hash["addresses"].collect {|h| h["stateCode"]}[0]
             new_park.url = hash["url"]
             new_activity = Activity.new
             new_activity.name = hash["activities"].collect {|h| h["name"]}
             new_park.save
-         
         end
-
     end
-
 end
