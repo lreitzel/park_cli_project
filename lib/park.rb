@@ -1,5 +1,5 @@
 class Park
-    attr_accessor :name, :description, :activity, :url
+    attr_accessor :name, :description, :activities, :url
 
     @@all = []
 
@@ -16,10 +16,11 @@ class Park
     end
 
     def self.find_by_activity(activity)
-        @@all.find do |park|
-            if park.activity.include?(activity)
+        parks = @@all.collect do |park|
+            if park.activities.include?(activity)
                 park.name
             end
-        end    
+        end
+        parks.compact
     end
 end

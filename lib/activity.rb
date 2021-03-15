@@ -3,7 +3,7 @@ class Activity
 
     @@all =[]
 
-    def initialize
+    def save
         @@all << self
     end
 

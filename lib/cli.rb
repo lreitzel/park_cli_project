@@ -39,7 +39,7 @@ class CLI
         when 2
             activity_input = list_activities
             chosen_activity_park = Park.find_by_activity(activity_input)
-            puts "#{chosen_activity_park.name}".cyan
+            puts "#{chosen_activity_park.join(", ")}".cyan
             sleep(1)
             puts "Make another selection or choose Exit:".green
             sleep(1)
