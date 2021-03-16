@@ -27,7 +27,7 @@ class CLI
             puts "#{chosen_park.description}"
             sleep(2)
             puts "Available Activities:".cyan
-            puts "#{chosen_park.activity.join(", ")}"
+            puts "#{chosen_park.activities.join(", ")}"
             sleep(2)
             puts "Link for more information:".cyan
             puts "#{chosen_park.url}"
@@ -69,8 +69,7 @@ class CLI
 
 
     def list_parks
-        parks = Park.all
-        park_names = parks.collect do |park|
+        park_names = Park.all.collect do |park|
             park.name
         end
         
@@ -78,8 +77,7 @@ class CLI
     end
 
     def list_activities
-        activities = Activity.all
-        park_activities = activities.collect do |activity|
+        park_activities = Activity.all_order.collect do |activity|
             activity.name
         end
 

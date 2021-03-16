@@ -20,6 +20,7 @@ class APIGet
             new_park.activities = hash["activities"].collect {|h| h["name"]}
             new_park.url = hash["url"]
             new_activity = Activity.new
+            binding.pry
             new_activity.name = hash["activities"].collect {|h| h["name"]}
             new_park.save
             new_activity.save
